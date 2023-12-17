@@ -27,6 +27,11 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "Login finalizado!"
       
-    
+    - name: Docker Build image
+      run: |
+        docker build ${{ secrets.DOCKER_USER }}/graphql-actions:0.0.2 .
+    - name: Docker Push image
+      run: |
+        docker push ${{ secrets.DOCKER_USER }}/graphql-actions:0.0.2
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
